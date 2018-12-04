@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, TextInput, View } from 'react-native';
-import { NativeButton } from '../components/Button';
-import TodoObject from './TodoObject';
+import TodoApp from './src/TodoApp';
+import store from './src/store';
+import { Provider } from 'react-redux';
 
 const instructions = Platform.select({
 	ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -14,20 +15,9 @@ type Props = {};
 export default class App extends Component<Props> {
 	render() {
 		return (
-			<View style={styles.container}>
-				<View style={styles.addTodo}>
-					<TextInput style={styles.todoText} />
-					<NativeButton text={'Add'} onPress={() => {
-					}} />
-				</View>
-				<View style={styles.todoList}>
-					<TodoObject text={'aa'} completed={true} onPress=onPress={() => {
-}}/>
-				</View>
-				<View style={styles.visibilityFilter}>
-
-				</View>
-			</View>
+			<Provider store={store}>
+				<TodoApp />
+			</Provider>
 		);
 	}
 }

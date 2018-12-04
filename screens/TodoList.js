@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import TodoObject from './TodoObject';
 
-type todo =[
+type todo = [
 	{
 		id: number,
 		text: string,
 		completed: boolean,
 	}];
-type todos = Array<todo>;
+type Props = { todos: Array<todo>, onTodoPress: Function };
 
-class TodoList extends Component<todos> {
+class TodoList extends Component<Props> {
 	render() {
+		const {todos, onTodoPress} = this.props;
 		return (
-			todos.map(todo=><TodoObject key={todo.id}></TodoObject>)
-		)
+			todos.map(todo => <TodoObject key={todo.id} {...todo} onPress={() => onTodoPress(index)} />)
+		);
 	}
 }
-export {TodoList};
+
+export { TodoList };
